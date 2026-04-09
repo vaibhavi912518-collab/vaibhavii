@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- ↓ EDIT: Change this to your article title -->
+<title>The Degree and the Deadline — Vaibhavi Gupta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inconsolata:wght@300;400;500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #f9f6f1;
+    --ink: #1a1714;
+    --muted: #7a7269;
+    --accent: #c0392b;
+    --border: #e5e0d8;
+    --card: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    background: rgba(249,246,241,0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  .site-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .site-name span { color: var(--accent); }
+
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* ── ARTICLE HERO ── */
+  .article-hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 5rem 5vw 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-tag {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  /* ↓ EDIT: This is your article title */
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ↓ EDIT: This is your article subtitle/standfirst */
+  .article-standfirst {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 58ch;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .meta-divider {
+    width: 1px;
+    height: 12px;
+    background: var(--border);
+  }
+
+  /* ── ARTICLE BODY ── */
+  .article-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 4rem 5vw 6rem;
+  }
+
+  /* All body text */
+  .article-body p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: #2a2520;
+    margin-bottom: 1.8rem;
+    font-weight: 400;
+  }
+
+  /* Section headings — H2 */
+  .article-body h2 {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 3.5rem 0 1.2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 1rem 0 1rem 2rem;
+    margin: 3rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* Horizontal rule */
+  .article-body hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* Byline at end */
+  .article-byline {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Word count */
+  .article-wordcount {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.65rem;
+    color: var(--border);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── BACK + NEXT ── */
+  .article-nav {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+
+  .article-nav a {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .article-nav a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    .article-nav { flex-direction: column; gap: 1rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="site-name">Vaibhavi<span>.</span></a>
+  <nav>
+    <a href="index.html">← All Essays</a>
+    <a href="mailto:your@email.com">Contact</a>
+  </nav>
+</header>
+
+<!-- ARTICLE HERO -->
+<div class="article-hero">
+  <!-- ↓ EDIT: Change category tags -->
+  <span class="article-tag">Gender · Politics · Society</span>
+
+  <!-- ↓ EDIT: Your article title -->
+  <h1 class="article-title">The Degree and the Deadline: How Educated Indian Women Are Still Racing Against the Marriage Clock</h1>
+
+  <!-- ↓ EDIT: One-line summary of the piece -->
+  <p class="article-standfirst">The marriage deadline doesn't disappear with a degree. In many families, it arrives faster because of one.</p>
+
+  <div class="article-meta">
+    <!-- ↓ EDIT: Your name -->
+    <span class="meta-item">By Vaibhavi Gupta</span>
+    <div class="meta-divider"></div>
+    <!-- ↓ EDIT: Publication date -->
+    <span class="meta-item">2025</span>
+    <div class="meta-divider"></div>
+    <!-- ↓ EDIT: Approximate read time -->
+    <span class="meta-item">5 min read</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     ARTICLE BODY
+     HOW TO EDIT:
+     - Each <p> tag is one paragraph
+     - <h2> tags are section headings
+     - <div class="pull-quote"> is for a highlighted quote
+     - <hr> adds a visual divider
+     ════════════════════════════════════════════ -->
+<article class="article-body">
+
+  <p>She graduates with honours. She lands a job. She publishes research, leads teams, builds something real — and then, somewhere between 23 and 26, the question shifts. Not <em>what are you doing with your life?</em> but <em>what are you doing about your life?</em></p>
+
+  <p>For millions of educated Indian women, the marriage deadline doesn't disappear with a degree. In many families, it arrives faster because of one.</p>
+
+  <hr/>
+
+  <h2>The Paradox of the "Marriageable" Graduate</h2>
+
+  <p>India's female enrolment in higher education has grown significantly over the past decade, with women now outnumbering men in several university programmes. On paper, this is progress. In practice, for many families, a degree has quietly become a matrimonial asset — proof of value on the marriage market — rather than a launchpad for independent ambition.</p>
+
+  <p>The pressure rarely arrives as an ultimatum. It comes in softer forms: a relative's offhand comment at dinner, a mother's anxious tone when a classmate gets engaged, a father who funds a postgraduate degree but grows visibly restless if it isn't "settled" by 25. It is pressure that doesn't announce itself as pressure — which makes it considerably harder to push back against.</p>
+
+  <h2>What the Data Actually Says</h2>
+
+  <p>India's median age at first marriage for women has risen — from 18.3 years in 1990 to approximately 22.5 years today, according to government surveys. That's meaningful progress.</p>
+
+  <p>But progress in statistics doesn't always translate to progress in drawing rooms. Studies on urban Indian women consistently show that familial pressure to marry intensifies in the mid-twenties, regardless of career stage. A woman finishing a PhD at 27 faces the same social arithmetic as one who finished her undergraduate degree at 21. The clock, it turns out, runs independently of credentials.</p>
+
+  <p>What changes with education isn't the existence of pressure — it's who applies it and how it's framed. Educated families tend to negotiate rather than dictate. The language shifts from obligation to concern: <em>we just want you to be settled, we just want you to be happy.</em> The sentiment is genuine, often. The effect is the same.</p>
+
+  <h2>The Ambition Tax</h2>
+
+  <div class="pull-quote">
+    Many educated Indian women pay an ambition tax — quietly, practically, often without realising they are paying it at all.
+  </div>
+
+  <p>They take jobs close to home rather than cities with better opportunities. They decline promotions that would require relocation. They choose fields — teaching, medicine, government work — partly for their perceived compatibility with future domestic life. They make these calculations quietly, practically, often without realising they are making them at all.</p>
+
+  <p>This isn't weakness. It's rational navigation of a system that hasn't caught up with its own stated values. India celebrates its educated daughters and simultaneously expects them to treat education as preparation for wifehood rather than an end in itself. Holding both expectations simultaneously is, at minimum, exhausting.</p>
+
+  <h2>The Other Side of the Conversation</h2>
+
+  <p>It would be dishonest to flatten this into a simple story of oppression.</p>
+
+  <p>Many Indian women want marriage — want it genuinely, want it early, and find deep meaning in building families alongside careers. The feminist position isn't that marriage is the problem. It's that the <em>pressure</em> — the social machinery that makes a woman feel her value has an expiry date — is the problem.</p>
+
+  <p>There's also the genuine concern that motivates many families. In a country where social safety nets are limited and aging parents often depend on children, the anxiety about a daughter's security isn't purely patriarchal — it's also practical and sometimes loving, if clumsily expressed.</p>
+
+  <p>The complexity is real. Acknowledging it doesn't undermine the critique; it sharpens it.</p>
+
+  <h2>What Is Actually Changing</h2>
+
+  <p>Something is shifting, even if slowly.</p>
+
+  <p>Urban Indian women in their late twenties and thirties are increasingly vocal about choosing to delay or forgo marriage without framing it as failure. Conversations that once happened only in whispers — about the loneliness of compliance, about careers abandoned mid-flight, about choosing yourself — are happening publicly, online, in op-eds, in group chats.</p>
+
+  <p>There is a growing refusal among younger educated women to accept the premise that their timeline is anyone else's business. It's not a revolution. But it is, unmistakably, a renegotiation.</p>
+
+  <h2>The Question Worth Asking</h2>
+
+  <p>If a woman earns her own income, pays her own rent, and builds her own life — at what point does her family's anxiety about her marital status become, simply, her family's problem to manage?</p>
+
+  <p>That's an uncomfortable question in a culture that values collective over individual. But it's the right one to sit with. Because the alternative — a generation of educated women quietly shrinking their ambitions to fit timelines they didn't set — is a loss that doesn't show up in any enrolment statistic.</p>
+
+  <p>The degree was never meant to be a dowry. It's time more people said so out loud.</p>
+
+  <!-- ↓ EDIT: Your byline -->
+  <div class="article-byline">
+    Vaibhavi Gupta is a Mathematics Honours student at the University of Delhi and a freelance writer covering gender, politics, and culture.
+    <span class="article-wordcount">~820 words</span>
+  </div>
+
+</article>
+
+<!-- ARTICLE NAV -->
+<div class="article-nav">
+  <a href="index.html">← Back to all essays</a>
+  <!-- ↓ EDIT: Link to your next article when you write one -->
+  <a href="#">Next Essay →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Vaibhavi Gupta</span>
+  <span>New Delhi, India</span>
+  <span>Built by hand.</span>
+</footer>
+
+</body>
+</html>
